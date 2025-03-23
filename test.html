@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mind Connect</title>
+    <link rel="stylesheet" href="mind_connect.css">
+</head>
+<body>
+    <!-- Floating Chatbot Button -->
+    <button id="chatButton" class="chat-button">Chat with our Bot</button>
+
+    <!-- Chatbot Popup -->
+    <div id="chatPopup" class="chat-popup">
+        <div class="chat-header">
+            <h3>AI Chatbot</h3>
+            <button id="closeChat" class="close-btn">X</button>
+        </div>
+        <div id="chatContent" class="chat-content">
+            <!-- Chat messages will appear here -->
+        </div>
+        <input type="text" id="userInput" placeholder="Type your message...">
+        <button id="sendMessage" class="send-btn">Send</button>
+    </div>
+
+    <script src="chatbot.js"></script>
+</body>
+</html>

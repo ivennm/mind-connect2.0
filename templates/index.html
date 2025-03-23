@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mind Connect</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='mind_connect.css') }}">
+</head>
+<body>
+
+<!-- Navigation -->
+<header class="navigation">
+    <div class="logo">Mind Connect</div>
+    <div class="nav-controls">
+        <div class="toggle-switch">
+            <input type="checkbox" id="dark-mode">
+            <label for="dark-mode"></label>
+        </div>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Welcome to Mind Connect</h1>
+        <p>Your AI-powered companion for mental well-being, offering compassionate, 24/7 support and tailored guidance.</p>
+    </div>
+</section>
+
+<!-- Smooth Intersection Curve -->
+<div class="curve"></div>
+
+<!-- About Us Section -->
+<section class="about-us">
+    <div class="about-text">
+        <h2>About Mind Connect</h2>
+        <p>At Mind Connect, we believe that everyone deserves emotional support. Our AI chatbot is designed to listen, understand, and provide helpful responses that guide you through difficult moments. Whether it's a rough day or a need for someone to talk to, we're here for you — with empathy, always.</p>
+        <p>We stand for a supportive, safe space for people to connect with their emotions, track mental health habits, and receive the comfort of knowing someone is always there to listen.</p>
+    </div>
+</section>
+
+<!-- Connect Now Section -->
+<section class="connect-now">
+    <div class="connect-text">
+        <h2>Connect Now</h2>
+        <p>Discover AI-driven emotional support with empathetic responses and smart habit tracking. Whether you're feeling stressed, anxious, or need advice, we're here to help you every step of the way.</p>
+        <a href="/chat.html">
+            <button class="chat-popup">Chat With Our Bot</button>
+        </a>
+    </div>
+    <img src="/static/ai.gif" alt="AI Icon">
+</section>
+
+<!-- Another Curve for Smooth Transition -->
+<div class="curve flip"></div>
+
+<!-- Astro Bound Section -->
+<section class="astro-bound">
+    <img src="/static/astronaut.gif" alt="Astro Bound Game">
+    <div class="astro-text">
+        <h2>Astro Bound</h2>
+        <p>Relax and play a space-themed adventure game designed to ease your mind and promote mindfulness.</p>
+        <button class="play-button">Play Now</button>
+    </div>
+</section>
+
+<!-- Floating Chatbot Button -->
+<a href="/chat">
+    <button id="chatButton" class="chat-button">Chat with our Bot</button>
+</a>
+
+<!-- Chatbot Popup -->
+<div id="chatPopup" class="chat-popup">
+    <div class="chat-header">
+        <h3>AI Chatbot</h3>
+        <button id="closeChat" class="close-btn">X</button>
+    </div>
+    <div id="chatContent" class="chat-content">
+        <!-- Chat messages will appear here -->
+    </div>
+    <input type="text" id="userInput" placeholder="Type your message...">
+    <button id="sendMessage" class="send-btn">Send</button>
+</div>
+
+<script src="{{ url_for('static', filename='chatbot.js') }}"></script>
+
+</body>
+</html>

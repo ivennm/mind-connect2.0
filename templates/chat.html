@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='mind_connect.css') }}">
+</head>
+<body>
+
+    <div class="chat-container">
+        <h1>Mental Health Chatbot</h1>
+        <div id="chat-box">
+            <!-- Display bot's response -->
+            {% if variable %}
+                <p>{{ variable }}</p>
+            {% endif %}
+        </div>
+
+        <!-- Show error message if no input -->
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+
+        <button onclick="startRecognition()">Start Speaking</button>
+        <p id="output">Your speech will appear here...</p>
+
+        <div class="input-container">
+            <!-- Form for sending messages -->
+            <form action="/chat" method="POST">
+                <input type="text" name="user_input" id="user-input" placeholder="Type your message..." required>
+                <button type="submit">Send</button>
+            </form>
+        </div>
+        <div id="webcam-container">
+            <video id="webcam" autoplay></video>
+        </div>
+
+        <div id="emotion-container">
+            <p id="detected-emotion">Emotion: {{ emotion }} </p>
+        </div>
+    </div>
+
+    <script>
+        function startRecognition() {
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = 'en-US';
+            recognition.interimResults = false;
+            recognition.maxAlternatives = 1;
+    
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById('user-input').value = transcript; // Insert text into input field
+            };
+    
+            recognition.onerror = (event) => {
+                console.error("Speech recognition error:", event.error);
+            };
+    
+            recognition.start();
+        }
+
+        
+
+        let emotion = "";
+        // Start webcam stream
+        const video = document.getElementById('webcam');
+        const constraints = { video: true };
+
+        navigator.mediaDevices.getUserMedia(constraints)
+            .then(function (stream) {
+                video.srcObject = stream;
+            })
+            .catch(function (err) {
+                console.error("Error accessing webcam: ", err);
+            });
+
+        // Capture emotion from the webcam feed and send it to the server
+        function captureEmotion() {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const imageData = canvas.toDataURL('image/png');
+
+            // Send emotion data to the backend
+            fetch('/detect_emotion', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ image_data: imageData })
+            })
+            .then(response => response.json())
+            .then(data => {
+                emotion = data.emotion;
+                console.log('Detected emotion:', emotion);
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        // Call the captureEmotion function every 2 seconds to continuously update
+        setInterval(captureEmotion, 2000);
+
+    </script>
+
+</body>
+</html>

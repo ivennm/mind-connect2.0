@@ -1,0 +1,310 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: fixed linear-gradient(to bottom, 
+        #4b006e, /* Darker Purple */
+        #a31aff 30%, /* Lighter Purple */
+        #d65cad 60%, /* Soft Pink */
+        #ff9f00 90%, /* Softer Orange */
+        #ffe680); /* Light Yellow */
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    color: white;
+    line-height: 1.6;
+    min-height: 100vh; /* Ensure the background covers the full page */
+    background-attachment: fixed; /* Keeps the background fixed while scrolling */
+    background-position: top center; /* Keeps the gradient fixed at the top */
+    background-size: cover; /* Ensure it covers the full viewport height */
+    position: relative;
+    scroll-behavior: smooth;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Starry background effect */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('stars.png'); /* Stars image, or you can use a CSS-generated pattern */
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -1; /* Ensures stars appear behind all content */
+    opacity: 0.2; /* Adjust opacity of stars */
+}
+
+/* Navigation */
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Buttons and other styles */
+button {
+    color: white;
+    border: 2px solid white; /* Border to define button edges */
+    padding: 12px 24px; /* Adjust padding for a better fit */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    background-color: transparent; /* Keep background transparent */
+    font-size: 1rem; /* Adjust font size */
+    text-transform: uppercase; /* Uppercase for button text */
+    font-weight: bold; /* Make the button text bold */
+    outline: none; /* Remove outline */
+}
+
+button:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Add a hover effect with semi-transparent white */
+    border-color: #ff9f00; /* Border color changes on hover */
+}
+
+/* Chatbot Floating Button */
+#chatButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #4b006e;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+/* Hide chat button when chat popup is open */
+.chat-popup.open ~ #chatButton {
+    display: none;
+}
+
+/* Chatbot Popup */
+.chat-popup {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 1000;
+    max-width: 350px;
+}
+
+/* Chat Header */
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ff9f00;
+    padding: 8px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+/* Chat Title */
+.chat-header h3 {
+    color: #ffffff;
+    margin: 0;
+}
+
+/* Close Button (X) */
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: purple;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Chat Content (Message Area) */
+.chat-content {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+    color: #4b006e; /* AI text color */
+}
+
+#userInput {
+    width: calc(100% - 20px);
+    padding: 8px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    color: #4b006e; /* User input text color */
+}
+
+/* Send Button */
+.send-btn {
+    width: 100%;
+    padding: 8px;
+    background-color: #ff9f00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.chat-button:hover, .play-button:hover {
+    background-color: #d65cad; /* Hover background color */
+}
+
+
+/* Hero Section */
+.hero {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: inherit;
+    color: white;
+    text-align: center;
+    padding: 20px 10px;
+    position: relative;
+    margin-top: 60px;
+}
+
+/* Other Sections */
+.curve {
+    background: url('curve.svg');
+    height: 60px;
+    background-size: cover;
+    background-position: center;
+}
+
+.curve.flip {
+    transform: rotate(180deg);
+}
+
+/* About Us Section */
+.about-us {
+    padding: 60px 20px;
+    background: transparent;
+}
+
+.about-text {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.about-text h2 {
+    font-size: 2.5rem;
+    color: #fff; /* Purple */
+    margin-bottom: 20px;
+}
+
+.about-text p {
+    font-size: 1rem;
+    color: #fff; /* Changed text color to white */
+}
+
+/* Connect Now Section */
+.connect-now {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 60px 20px;
+    background: transparent;
+}
+
+.connect-now img {
+    width: 280px;
+    animation: float 4s ease-in-out infinite;
+}
+
+.connect-text {
+    max-width: 350px;
+    text-align: left;
+}
+
+.connect-text h2 {
+    font-size: 2.3rem;
+    color: #fff; /* Purple */
+}
+
+.connect-text p {
+    font-size: 1rem;
+    color: #fff; /* Changed text color to white */
+    margin-bottom: 20px;
+}
+
+/* Astro Bound Section */
+.astro-bound {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 60px 20px;
+    background: transparent;
+    color: white;
+    position: relative;
+}
+
+.astro-text {
+    max-width: 350px;
+    text-align: left;
+}
+
+.astro-text h2 {
+    font-size: 2.3rem;
+}
+
+.astro-text p {
+    font-size: 1rem;
+    color: #fff; /* Changed text color to white */
+}
+
+.astro-bound img {
+    width: 280px;
+    animation: float 4s ease-in-out infinite;
+}
+
+/* Floating Animation */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Fixed Gradient Overlay */
+.transcript {
+    overflow: scroll;
+    width: 350px;
+    height: 200px;
+    display: inline-block;
+    margin: 10px;
+    background-color: fixed(255, 255, 255, 0.8);
+    position: relative;
+}
+
+/* Apply fixed gradient overlay using :before */
+.transcript:before {
+    content: "";
+    width: 350px;
+    height: 80px; /* Gradient height, can adjust based on preference */
+    position: fixed; /* Fixes the gradient overlay */
+    top: 0; /* Positions the gradient at the top of the viewport */
+    left: 10px; /* Adjust if needed to match your container's positioning */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+    z-index: 1; /* Ensures the gradient stays above other content */
+}
